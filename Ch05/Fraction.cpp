@@ -57,19 +57,3 @@ int Fraction::denom() const
 {
 	return d_;
 }
-
-//void Fraction::simplify_()
-//{
-//	assert(!(n_ < 0) && !(d_ <= 0));
-//
-//	int frac_gcd = std::gcd(n_, d_);
-//	n_ /= frac_gcd;
-//	d_ /= frac_gcd;
-//
-//	if (n_ == d_)
-//	{
-//		n_ = 1;
-//		d_ = 1;
-//	}
-//}
-
