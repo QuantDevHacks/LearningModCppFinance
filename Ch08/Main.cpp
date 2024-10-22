@@ -1,3 +1,8 @@
+/*
+ * This file is licensed under the Mozilla Public License, v. 2.0.
+ * You can obtain a copy of the license at http://mozilla.org/MPL/2.0/.
+ */
+
 #include "ExampleDeclarations.h"
 
 #include <vector>
@@ -8,7 +13,6 @@
 
 int main()
 {
-
 	lazy_evaluation_demonstration();
 	expression_template_examples();
 	eigen_intro_examples();

@@ -1,7 +1,9 @@
-#include "ExampleDeclarations.h"
+/*
+ * This file is licensed under the Mozilla Public License, v. 2.0.
+ * You can obtain a copy of the license at http://mozilla.org/MPL/2.0/.
+ */
 
-// Note:  Might not need all of these declarations (and same for EigenStlExamples.cpp).
-// Used to be in same file.  TO DO:  Tidy up!
+#include "ExampleDeclarations.h"
 
 #include <Eigen/Dense>
 #include <cmath>

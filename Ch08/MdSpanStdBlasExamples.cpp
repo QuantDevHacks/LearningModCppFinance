@@ -1,3 +1,8 @@
+/*
+ * This file is licensed under the Mozilla Public License, v. 2.0.
+ * You can obtain a copy of the license at http://mozilla.org/MPL/2.0/.
+ */
+
 #define MDSPAN_USE_PAREN_OPERATOR 1		
 // For stdBLAS, to use the (i, j) operator.  
 // stdBLAS will also support (by default?) the new [i, j] operator when
