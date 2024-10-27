@@ -40,7 +40,7 @@ void fcn_template_examples()
 		frac.numer(), frac.denom(), sq_frac.numer(), sq_frac.denom());
 
 	auto sq_frac_unif = tmpl_square<Fraction>({2, 3});
-	cout << format("Square of fractions using unif initialization = {}/{}\n\n",
+	cout << format("Square of fraction using unif initialization = {}/{}\n\n",
 		sq_frac_unif.numer(), sq_frac_unif.denom());
 
 	// operator* not defined for Circle.
