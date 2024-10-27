@@ -25,6 +25,7 @@ using std::cout, std::format;
 void multi_array()			// Top level calling function
 {
 	simple_multi_array();	// Simple 1st example using Boost Multiarray
+	euro_atm_call();		// No dividend (default = 0)
 	amer_itm_put();			// No dividend (default = 0)
 	lattice_pricing_convergence();
 }
@@ -57,13 +58,37 @@ void simple_multi_array()
 	cout << "\n\n";
 }
 
+void euro_atm_call()
+{
+	cout << format("\n*** euro_atm_call() ***") << "\n";
+	cout << format("ATM European call option (no dividend):") << "\n";
+
+	double strike = 36.0, rf_rate = 0.06, mkt_vol = 0.2, time_to_exp = 1.0; // div_rate = 0.0 (default)
+	int time_steps{4};
+	double spot{36.0};
+
+	auto cp = make_unique<CallPayoff>(strike);		// cp = "call pointer"
+	OptionInfo call{std::move(cp), time_to_exp};
+
+	// call contains a unique_ptr -- must move
+	BinomialLatticePricer call_pricer{std::move(call), mkt_vol, rf_rate, time_steps};
+
+	double opt_price = call_pricer.calc_price(spot, OptType::Euro);
+	std::cout << std::setprecision(2) << format("strike = {}, spot = {}, price = {}",
+		strike, spot, opt_price) << "\n" << "\n";
+
+	call_pricer.display_lattice_nodes();
+
+	cout << format("Option price = {}\n\n", opt_price);
+}
+
 void amer_itm_put()		
 {
 	cout << format("\n*** amer_itm_put() ***") << "\n";
 	cout << format("ITM American put option (no dividend):") << "\n\n";
 
 	// Dividend default is 0, but you can put it in if you like (uncomment the last argument):
-	double strike = 40.0, rf_rate = 0.06, mkt_vol = 0.2, time_to_exp = 1.0/*, div_rate{0.0}*/;
+	double strike = 40.0, rf_rate = 0.06, mkt_vol = 0.2, time_to_exp = 1.0;  // div_rate = 0.0 (default)
 	int time_steps = 4;
 	double spot = 36.0;
 
