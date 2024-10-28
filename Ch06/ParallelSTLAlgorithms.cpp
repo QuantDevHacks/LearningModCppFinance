@@ -108,7 +108,7 @@ void exp_approx(unsigned num_elements, unsigned n)
 	cout << format("Mean of z values in vector = {}\n\n", mean_z);
 	auto u = v;
 
-	auto exp_series = [&n](double x)
+	auto exp_series = [n](double x)
 	{
 		// x = A standard normal variate
 		double num = x;			// numerator in the term
