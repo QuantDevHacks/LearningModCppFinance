@@ -41,6 +41,7 @@ void valarray_operators()
 	}
 	cout << "\n\n";
 
+	// Extra example, not in book:
 	cout << format("Type of scal_div_sum: {}, elements follow:", typeid(scal_div_sum).name()) << "\n";
 	for (auto elem : scal_div_sum)
 	{
@@ -103,6 +104,7 @@ void valarray_operators()
 	valarray abs_val = std::abs(neg_val);
 	valarray exp_val = std::exp(neg_val);
 
+	// Output for each of the above is here, but not listed in the book:
 	for (auto elem : sine_val)
 	{
 		cout << std::format("sine(.) = {}\n", elem);
@@ -157,6 +159,9 @@ void valarray_slices()
 	auto slice_row01 = val[std::slice(0, 3, 1)];		
 	mtx_array row01{ slice_row01 };		// Row 1 in the mathematical sense,
 										// 0-indexed in C++
+
+	// The output of the code examples is provided here
+	// (most is not listed in the book):
 	cout << std::format("std::slice return type: {}", typeid(slice_row01).name());
 	cout << "\n\n";
 
@@ -241,6 +246,9 @@ void valarray_slice_products()
 	// Need full valarray<double> (mtx_array types) to perform math operations:
 	mtx_array va01_row03 = slice_01_row_03;
 	mtx_array va02_col02 = slice_02_col_02;
+
+	// The output of the code examples is provided here
+	// (most is not listed in the book):
 
 	for (auto elem : va01_row03)
 	{
