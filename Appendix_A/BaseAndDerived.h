@@ -30,7 +30,10 @@ public:
     //virtual ~Base() { std::cout << "Base (virtual) destructor called\n\n"; }
 
     // Case 3: 
-    // The simplest (and usually best) way is to use a virtual default destructor:
+    // The simplest (and usually best) way is to use a virtual default destructor
+    // on the base class, which will call the compiler-provided default
+    // destructors on the derived classes (so you can comment out the user-defined
+    // destructor examples in the derived classes):
     //virtual ~Base() = default;
 };
 
