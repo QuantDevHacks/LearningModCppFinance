@@ -96,7 +96,7 @@ void template_examples()
 void export_import_example()
 {
 	Latex latex{2, 10.50};		// exported from ExportImport module
-	std::string order_code{"X106224"};
+	std::string order_code{"X120264"};
 	order(order_code, latex);
 
 	std::cout << "\n\n";
