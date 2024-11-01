@@ -55,9 +55,10 @@ void enum_class_examples()
 	//	// . . .
 	//}
 
-	cout << format("Corporate Bond index: {}\n", static_cast<int>(Bond_Type::Corporate));	// Num 1
+	cout << format("Corporate Bond index: {}\n", 
+		static_cast<int>(Bond_Type::Corporate));	// Num 1
 	cout << format("Natural Gas Futures index: {}\n", 
-		static_cast<int>(Futures_Contract::Silver));
+		static_cast<int>(Futures_Contract::Natural_Gas));	// Num 3
 }
 
 void switch_statement_scoped_enum(Bond_Type bnd)
