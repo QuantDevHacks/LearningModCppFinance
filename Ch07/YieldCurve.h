@@ -13,7 +13,7 @@ class YieldCurve
 {
 public:
 	// d1 <= d2 < infinity:
-	double discount_factor(const ChronoDate& date_01, const ChronoDate& date_02) const;	
+	double discount_factor(const ChronoDate& d1, const ChronoDate& d2) const;	
 	virtual ~YieldCurve() = default;	
 
 	ChronoDate settle_date() const;
