@@ -14,6 +14,19 @@ EquityPriceGenerator::EquityPriceGenerator(double spot, int num_time_steps,
 	volatility_{volatility}, rf_rate_{rf_rate}, div_rate_{div_rate},
 	dt_{time_to_expiration / num_time_steps} {}
 
+
+double EquityPriceGenerator::generate_new_price(double previous_equity_price, double norm) const
+{
+	double price{0.0};
+
+	double exp_arg_01 = (rf_rate_ - div_rate_ - 
+		((volatility_ * volatility_) / 2.0)) * dt_; // risk-neutral drift term
+	double exp_arg_02 = volatility_ * norm * sqrt(dt_); // diffusion term
+	price = previous_equity_price * std::exp(exp_arg_01 + exp_arg_02);
+
+	return price;
+}
+
 std::vector<double> EquityPriceGenerator::operator()(int seed) const
 {
 	std::vector<double> v;
@@ -22,25 +35,13 @@ std::vector<double> EquityPriceGenerator::operator()(int seed) const
 	std::mt19937_64 mt(seed);
 	std::normal_distribution<> nd;
 
-	auto new_price = [this](double previous_equity_price, double norm)
-	{
-		double price{0.0};
-
-		double exp_arg_01 = (rf_rate_ - div_rate_ - 
-			((volatility_ * volatility_) / 2.0)) * dt_;
-		double exp_arg_02 = volatility_ * norm * sqrt(dt_);
-		price = previous_equity_price * std::exp(exp_arg_01 + exp_arg_02);
-
-		return price;
-	};
-
 	v.push_back(spot_);				// put initial equity price into the 1st position in the vector
 	double equity_price = spot_;
 
 	for (int i = 1; i <= num_time_steps_; ++i)	// i <= num_time_steps_ since we need a price 
 												// at the end of the final time step.
 	{											
-		equity_price = new_price(equity_price, nd(mt));	// norm = nd(mt)
+		equity_price = generate_new_price(equity_price, nd(mt));	// norm = nd(mt)
 		v.push_back(equity_price);
 	}
 

@@ -14,7 +14,9 @@ public:
 	EquityPriceGenerator(double spot, int num_time_steps,
 		double time_to_expiration, double volatility, double rf_rate, double div_rate);
 
-	std::vector<double> operator()(int seed) const;
+    double generate_new_price(double previous_equity_price, double norm) const;
+
+    std::vector<double> operator()(int seed) const;
 
 private:	
 	double spot_;
